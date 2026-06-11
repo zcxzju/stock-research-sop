@@ -1,0 +1,23 @@
+# stock-research-sop
+
+A Codex skill for turning stock or sector ideas into a structured research workflow.
+
+It organizes equity research into four stages:
+
+- monthly chokepoint screening
+- quarterly financial review
+- pre-buy red-team falsification
+- holding-period milestone monitoring
+
+## Usage
+
+```text
+Use $stock-research-sop to turn a stock idea into a structured screening, review, red-team, and monitoring workflow.
+```
+
+## Files
+
+- [SKILL.md](./SKILL.md): the skill instructions
+- [agents/openai.yaml](./agents/openai.yaml): UI metadata
+
+> Research organization only. Not investment advice.

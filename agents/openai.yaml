@@ -1,0 +1,4 @@
+interface:
+  display_name: "stock-research-sop"
+  short_description: "四阶段股票研究流程、AI提示词、财务复审与持股风控清单"
+  default_prompt: "Use $stock-research-sop to turn a stock idea into a structured screening, review, red-team, and monitoring workflow."
