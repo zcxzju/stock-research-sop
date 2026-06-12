@@ -13,22 +13,6 @@ It organizes equity research into four stages:
 
 Each full output ends with a compact Mermaid diagram that visualizes the screening, verification, red-team, and monitoring decision path.
 
-## GitHub Pages
-
-This repository includes a bilingual Chinese/English landing page at [docs/index.html](./docs/index.html).
-
-After pushing the files to GitHub, enable it in:
-
-```text
-Settings -> Pages -> Build and deployment -> Source: Deploy from a branch -> main /docs
-```
-
-The page will be available at:
-
-```text
-https://zcxzju.github.io/stock-research-sop/
-```
-
 ## Usage
 
 ```text
