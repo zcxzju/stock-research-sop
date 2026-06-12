@@ -814,9 +814,7 @@ For each milestone, define the latest acceptable date, verification source, conf
       </div>
     </footer>
 
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-
+    <script>
       const labels = {
         zh: {
           "nav.workflow": "流程",
@@ -838,23 +836,43 @@ For each milestone, define the latest acceptable date, verification source, conf
       const navLinks = [...document.querySelectorAll("[data-nav-link]")];
       const saved = localStorage.getItem("stock-research-sop-language");
       const preferred = saved || (navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en");
+      let mermaidApi = null;
 
-      mermaid.initialize({
-        startOnLoad: false,
-        securityLevel: "loose",
-        theme: "base",
-        themeVariables: {
-          primaryColor: "#edf3f0",
-          primaryTextColor: "#172026",
-          primaryBorderColor: "#0f766e",
-          lineColor: "#5d6972",
-          secondaryColor: "#fff7e0",
-          tertiaryColor: "#f7ebe3",
-          fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+      async function loadMermaid() {
+        if (mermaidApi) {
+          return mermaidApi;
         }
-      });
+
+        try {
+          const module = await import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs");
+          mermaidApi = module.default;
+          mermaidApi.initialize({
+            startOnLoad: false,
+            securityLevel: "loose",
+            theme: "base",
+            themeVariables: {
+              primaryColor: "#edf3f0",
+              primaryTextColor: "#172026",
+              primaryBorderColor: "#0f766e",
+              lineColor: "#5d6972",
+              secondaryColor: "#fff7e0",
+              tertiaryColor: "#f7ebe3",
+              fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+            }
+          });
+        } catch (error) {
+          console.warn("Mermaid rendering is unavailable; language switching still works.", error);
+        }
+
+        return mermaidApi;
+      }
 
       async function renderActiveDiagram(language) {
+        const mermaid = await loadMermaid();
+        if (!mermaid) {
+          return;
+        }
+
         const nodes = [
           ...document.querySelectorAll(`[data-lang-panel="${language}"] .mermaid:not([data-processed])`)
         ];
