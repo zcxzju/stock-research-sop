@@ -9,6 +9,8 @@ It organizes equity research into four stages:
 - pre-buy red-team falsification
 - holding-period milestone monitoring
 
+Each full output ends with a compact Mermaid diagram that visualizes the screening, verification, red-team, and monitoring decision path.
+
 ## Usage
 
 ```text

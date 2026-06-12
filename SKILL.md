@@ -1,7 +1,7 @@
 ---
 name: stock-research-sop
 description: >-
-  Create structured stock research workflows, prompts, checklists, and monitoring tables for A-share or equity ideas using a four-stage process: monthly chokepoint screening, quarterly financial review, pre-buy red-team falsification, and holding-period milestone monitoring. Use when the user asks to analyze a stock idea, turn influencer screenshots/notes into an investing SOP, generate AI prompts for stock screening, review companies around BOM localization or国产替代, or build a repeatable equity research checklist. This skill supports research organization only and must not present outputs as investment advice.
+  Create structured stock research workflows, prompts, checklists, monitoring tables, and final Mermaid visualization diagrams for A-share or equity ideas using a four-stage process: monthly chokepoint screening, quarterly financial review, pre-buy red-team falsification, and holding-period milestone monitoring. Use when the user asks to analyze a stock idea, turn influencer screenshots/notes into an investing SOP, generate AI prompts for stock screening, review companies around BOM localization or国产替代, or build a repeatable equity research checklist. This skill supports research organization only and must not present outputs as investment advice.
 ---
 
 # Stock Research SOP
@@ -20,6 +20,7 @@ Use the four-stage workflow unless the user requests only one stage.
 2. Quarterly review: verify financial delivery.
 3. Pre-buy red team: falsify the thesis before entry.
 4. Holding monitoring: track milestones and failure thresholds.
+5. Final visualization: summarize the research workflow or company decision path as a Mermaid diagram.
 
 If the input is only screenshots or rough notes, first extract the explicit rules, thresholds, and workflow sequence. Then rewrite them as a clean Markdown SOP with prompts and tables.
 
@@ -133,6 +134,7 @@ For a full SOP, use this structure:
 ## 4. 持股监控
 ## 最终输出表格模板
 ## 执行节奏
+## 最终可视化图
 ## 关键提醒
 ```
 
@@ -145,6 +147,31 @@ For milestone monitoring, use this table:
 
 | 公司 | 里程碑 | 最晚时限 | 验证来源 | 确认方式 | 未兑现含义 | 动作 |
 |---|---|---|---|---|---|---|
+
+## Final Visualization
+
+End full SOP, company-level research, and milestone-monitoring outputs with a compact Mermaid diagram under `## 最终可视化图`.
+
+Use a `flowchart LR` by default because it renders well in Markdown and GitHub. The diagram should show the decision path from screening to evidence verification, red-team falsification, milestone monitoring, and final status.
+
+Keep node labels short. Separate verified facts, inferences, and items to verify when those distinctions matter. Do not encode unsupported investment recommendations in the diagram.
+
+Default diagram template:
+
+```mermaid
+flowchart LR
+  A["月度初筛<br/>卡脖子环节"] --> B["季度复审<br/>财务兑现"]
+  B --> C["买前终审<br/>空头证伪"]
+  C --> D["持股监控<br/>里程碑跟踪"]
+  D --> E{"里程碑是否兑现？"}
+  E -->|已验证| F["继续跟踪"]
+  E -->|待验证| G["观察清单"]
+  E -->|未兑现| H["逻辑弱化/失效"]
+```
+
+For company-level outputs, adapt the diagram so each company flows into one of the final status labels: `值得跟踪`, `需要验证`, `风险较高`, `逻辑弱化`, or `逻辑失效`.
+
+If the user explicitly asks for a downloadable image file and local rendering tools are available, render the Mermaid diagram to SVG or PNG and provide the file path. Otherwise, output the Mermaid block itself as the final visual.
 
 ## Evidence Discipline
 
