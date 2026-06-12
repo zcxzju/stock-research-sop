@@ -4,6 +4,8 @@ A Codex skill for turning stock or sector ideas into a structured research workf
 
 中文说明：这是一个用于把股票、公司或赛道想法整理成结构化研究流程的 Codex skill。
 
+Website: https://zcxzju.github.io/stock-research-sop/
+
 It organizes equity research into four stages:
 
 - monthly chokepoint screening
